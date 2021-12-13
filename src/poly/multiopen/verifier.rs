@@ -46,6 +46,8 @@ where
     // using the challenge x_1
     let mut q_commitments: Vec<_> = vec![params.empty_msm(); point_sets.len()];
 
+    log::info!("point_sets len = {}", point_sets.len());
+
     // A vec of vecs of evals. The outer vec corresponds to the point set,
     // while the inner vec corresponds to the points in a particular set.
     let mut q_eval_sets = Vec::with_capacity(point_sets.len());

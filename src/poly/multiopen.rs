@@ -490,6 +490,7 @@ mod proptests {
             // It shouldn't matter what the point or eval values are; we should get
             // the same exact point set indices and point indices again.
             let (new_commitment_data, _new_point_sets) = construct_intermediate_sets(queries_2);
+
             let new_set_indices = new_commitment_data.iter().map(|data| data.set_index).collect::<Vec<_>>();
             let new_point_indices = new_commitment_data.iter().map(|data| data.point_indices.clone()).collect::<Vec<_>>();
 

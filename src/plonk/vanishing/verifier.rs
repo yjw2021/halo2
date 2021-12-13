@@ -97,6 +97,8 @@ impl<C: CurveAffine> PartiallyEvaluated<C> {
         let expected_h_eval = expressions.fold(C::Scalar::zero(), |h_eval, v| h_eval * &*y + &v);
         let expected_h_eval = expected_h_eval * ((xn - C::Scalar::one()).invert().unwrap());
 
+        log::info!("h commitments len = {}", self.h_commitments.len());
+
         let h_commitment =
             self.h_commitments
                 .iter()
