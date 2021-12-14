@@ -53,8 +53,17 @@ we need to implement the whole verify process via halo2 circuit. The following s
 - [ ] set `l_0 = l_evals[1 + blinding_factors]`
 - [ ] computing `h(x)`
 	- [ ] walk through to evaluate all gate polynomials
-	- [ ] evaluate permutaion, TODO
-	- [ ] evaluate lookup, TODO
+	- [ ] evaluate permutaion
+		- [ ] check: `z_0(X) = 1` at `\omega^0`
+		- [ ] check: `z_last(X) = 0 or 1` at `\omega^{last}`
+		- [ ] checks: `z_i(X) = z_{i-1}(\omega^(last) X)` at `\omega^0`, wrapping around for each column
+		- [ ] checks: `(1 - (l_last(X) + l_blind(X))) * (z_i(\omega X) \prod (p(X) + \beta s_i(X) + \gamma) - z_i(X) \prod (p(X) + \delta^i \beta X + \gamma)`
+	- [ ] evaluate lookup
+		- [ ] check: `l_0(X) * (1 - z'(X)) = 0`
+		- [ ] check: `l_last(X) * (z(X)^2 - z(X)) = 0`
+		- [ ] check: `(1 - (l_last(X) + l_blind(X))) * (z(\omega X) (a'(X) + \beta) (s'(X) + \gamma) - z(X) (\theta^{m-1} a_0(X) + ... + a_{m-1}(X) + \beta) (\theta^{m-1} s_0(X) + ... + s_{m-1}(X) + \gamma)) = 0`
+		- [ ] check: `l_0(X) * (a'(X) - s'(X)) = 0`
+		- [ ] check: `(1 - (l_last(X) + l_blind(X))) * (a′(X) − s′(X))⋅(a′(X) − a′(\omega^{-1} X)) = 0`
 - [ ] verify vanishing
 	- [ ] compute `h_eval = (\sum h_i(x) * y^i) / (x^n - 1)`
 	- [ ] compute `h_commitment = (\sum h_i * x^n)`
